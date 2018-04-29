@@ -117,5 +117,8 @@ while True:
 
 #todo
 
+def p_start(p):
+    "start : LoadFile split use AddL compile fit evaluate"
+    p[0] = (p[1], p[2], p[3], p[4], p[5], p[6], p[7])
 
 #---------------------------------------YACC-part-END-------------------------------
