@@ -2,6 +2,8 @@ import ply.lex as lex
 import ply.yacc as yacc
 import sys
 
+#---------------------------------------LEX-part--------------------------------
+
 # Create a list to hold all of the token names
 tokens = [
 
@@ -103,3 +105,17 @@ while True:
         if not tok:
             break
         print(tok)
+
+
+
+
+#---------------------------------------LEX-part-END-------------------------------
+
+
+#---------------------------------------YACC-part--------------------------------
+
+
+#todo
+
+
+#---------------------------------------YACC-part-END-------------------------------
