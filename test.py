@@ -27,30 +27,79 @@ tokens = [
     'adam'
 
 ]
-t_load = r'load'
-t_ignore = r''
+t_load = r'(load)'
+t_split = r'(split)'
+t_input = r'(input)'
+#t_ouptut = r'(output)'
+t_train = r'(train)'
+t_use = r'(use)'
+t_sequential = r'(sequential)'
+t_test = r'(test)'
+t_add_layer = r'(add_layer)'
+t_compile = r'(compile)'
+t_fit = r'(fit)'
+t_evaluate = r'(evaluate)'
+t_relu = r'(relu)'
+t_sigmoid = r'(sigmoid)'
+t_adam = r'(adam)'
+t_ignore = r' '
 
-def t_float :
+def t_float(t):
     r'\d+\.\d+'
     t.value = float(t.value)
     return t
 
-def t_int :
+def t_int(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-def t_string :
+
+'''def t_load(t):
+    r'(load)'
+    t.type = 'load'
+    return t
+'''
+def t_filepath(t) :
+    #r'^(.+)\/([^\/]+)$'
+    r'[a-zA-z]+\.csv'
+    t.type = 'filepath'
+    return t
+
+'''def t_string(t):
     r'[a-zA-z]+'
     t.type = 'string'
     return t
-
-def t_filepath :
-    r'[a-zA-Z]+\.csv'
-    t.type = 'filepath'
+'''
+def t_index(t) :
+    r'\[[0-9]+\]|\[[0-9]+\:[0-9]+\]'
+    t.type = 'index'
     return t
 
 def t_error(t) :
     print('Illegal type ')
     t.lexer.skip(1)
 
+#lexer = lex.lex()
+'''
+lexer.input("load read.csv")
+
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
+    print(tok)
+'''
+while True:
+    lexer = lex.lex()
+    try:
+        s = input('>> ')
+    except EOFError:
+        break
+    print (s)
+    lexer.input(s)
+    while True :
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)
